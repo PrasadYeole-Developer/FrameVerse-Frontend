@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
-, "src/app/components/Navbar.tsx"  ],
+    "**/*.mts",
+    "src/components/Navbar.tsx"
+  ],
   "exclude": ["node_modules"]
 }
