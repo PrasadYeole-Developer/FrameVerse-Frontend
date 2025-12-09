@@ -1,15 +1,5 @@
+import Post from "@/types/post";
 import Image from "next/image";
-
-type Post = {
-  _id: string;
-  image: string;
-  caption: string;
-  user: {
-    _id: string;
-    username: string;
-  };
-  __V: number;
-};
 
 const PostCard = ({ post }: { post: Post }) => {
   return (

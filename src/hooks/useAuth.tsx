@@ -1,10 +1,6 @@
 import api from "@/lib/api";
+import User from "@/types/user";
 import { useEffect, useState } from "react";
-
-type User = {
-  _id: string;
-  username: string;
-};
 
 const useAuth = () => {
   const [loading, setLoading] = useState<boolean>(true);
