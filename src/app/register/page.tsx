@@ -40,6 +40,7 @@ const Register = () => {
             type="text"
             name="username"
             value={username}
+            required={true}
             placeholder="Username"
             onChange={(val) => {
               setUsername(val.target.value);
@@ -50,6 +51,7 @@ const Register = () => {
             type="password"
             name="password"
             value={password}
+            required={true}
             placeholder="Password"
             onChange={(val) => {
               setPassword(val.target.value);
@@ -58,7 +60,7 @@ const Register = () => {
           />
           <button
             disabled={loading}
-            className="font-semibold! rounded-4xl cursor-pointer bg-[#213555]! transition-colors duration-500 hover:bg-black! py-4!"
+            className="font-semibold! rounded-4xl cursor-pointer bg-[#213555]! transition-colors duration-500 hover:bg-black! py-4! disabled:opacity-80 disabled:cursor-none"
           >
             {loading ? "Loading..." : "Submit"}
           </button>

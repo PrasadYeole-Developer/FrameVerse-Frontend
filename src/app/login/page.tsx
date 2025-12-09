@@ -39,6 +39,7 @@ const Login = () => {
             name="username"
             placeholder="Username"
             value={username}
+            required={true}
             onChange={(val) => {
               setUsername(val.target.value);
             }}
@@ -49,12 +50,16 @@ const Login = () => {
             name="password"
             placeholder="Password"
             value={password}
+            required={true}
             onChange={(val) => {
               setPassword(val.target.value);
             }}
             className="py-4! px-6! outline-none bg-[#F5EFE7] text-[#213555]! font-medium!"
           />
-          <button disabled={loading} className="font-semibold! rounded-4xl cursor-pointer bg-[#213555]! transition-colors duration-500 hover:bg-black! py-4!">
+          <button
+            disabled={loading}
+            className="font-semibold! rounded-4xl cursor-pointer bg-[#213555]! transition-colors duration-500 hover:bg-black! py-4! disabled:opacity-80 disabled:cursor-none"
+          >
             {loading ? "Loading..." : "Submit"}
           </button>
           <p className="text-[#213555] text-center font-medium!">
