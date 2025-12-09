@@ -11,6 +11,9 @@ const jost = Jost({
 export const metadata: Metadata = {
   title: "FrameVerse",
   description: "FrameVerse - Generate captions for your images using AI",
+  icons: {
+    icon: "/frameverselogo.png",
+  },
 };
 
 export default function RootLayout({
