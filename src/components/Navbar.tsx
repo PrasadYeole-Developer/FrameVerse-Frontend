@@ -5,6 +5,9 @@ const Navbar = () => {
   const postsHandler = () => {
     console.log("Posts clicked");
   };
+  const createHandler = () => {
+    console.log("Create clicked");
+  }
   const registerHandler = () => {
     console.log("Register clicked");
   };
@@ -19,6 +22,13 @@ const Navbar = () => {
       <nav className="flex gap-8">
         <Link href="/posts" className="cursor-pointer" onClick={postsHandler}>
           Posts
+        </Link>
+        <Link
+          href="/create"
+          className="cursor-pointer"
+          onClick={createHandler}
+        >
+          Create
         </Link>
         <Link
           href="/register"
