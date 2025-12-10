@@ -22,7 +22,6 @@ const Register = () => {
       alert("Registration successful! Please login.");
     } catch (err) {
       console.log(err);
-      console.log(process.env.NEXT_PUBLIC_API_BASE_URL);
       alert(
         "Registration failed. Please check your credentials and try again."
       );
