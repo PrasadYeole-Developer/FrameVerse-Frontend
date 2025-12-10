@@ -14,13 +14,6 @@ export const errorToast = (msg: string) => {
   });
 };
 
-export const warnToast = (msg: string) => {
-  toaster.create({
-    title: msg,
-    type: "warning",
-  });
-};
-
 export const infoToast = (msg: string) => {
   toaster.create({
     title: msg,
