@@ -338,7 +338,7 @@ const Posts = () => {
   return (
     <div className="bg-[#3E5879] min-h-screen w-full">
       <Navbar />
-      <div className="mt-12! px-12! max-w-full flex flex-wrap gap-8 justify-center items-start">
+      <div className="mt-12! px-12! pb-12! max-w-full flex flex-wrap gap-16 justify-center items-start">
         {posts.map((data) => (
           <PostCard key={data._id} post={data} />
         ))}
