@@ -1,14 +1,40 @@
 "use client";
 import Navbar from "@/components/Navbar";
+import useAuth from "@/hooks/useAuth";
 import api from "@/lib/api";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaFileUpload } from "react-icons/fa";
 
 const Create = () => {
+  const { user, isLoading } = useAuth();
+  const router = useRouter();
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.push("/login");
+      alert("Please login to create a post");
+      return;
+    }
+  }, [isLoading, user, router]);
+
+  if (isLoading) {
+    return (
+      <div className="bg-[#3E5879] min-h-screen w-full">
+        <Navbar />
+        <div className="home">
+          <h1 className="text-xl! sm:text-2xl! md:text-3xl! lg:text-3xl! xl:text-4xl! font-bold! tracking-wide text-white text-center pt-[15%]!">
+            Loading...
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isLoading && !user) return null;
+
   const createHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!image) {

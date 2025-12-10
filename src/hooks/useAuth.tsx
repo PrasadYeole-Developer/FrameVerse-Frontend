@@ -3,7 +3,7 @@ import User from "@/types/user";
 import { useEffect, useState } from "react";
 
 const useAuth = () => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -16,11 +16,11 @@ const useAuth = () => {
         setUser(null);
       })
       .finally(() => {
-        setLoading(false);
+        setIsLoading(false);
       });
   }, []);
 
-  return { user, loading };
+  return { user, isLoading };
 };
 
 export default useAuth;
