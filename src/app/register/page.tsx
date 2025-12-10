@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import api from "@/lib/api";
+import { errorToast, successToast } from "@/lib/toasts";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,10 +20,10 @@ const Register = () => {
       router.push("/login");
       setUsername("");
       setPassword("");
-      alert("Registration successful! Please login.");
+      successToast("Registration successful! Please login.");
     } catch (err) {
       console.log(err);
-      alert(
+      errorToast(
         "Registration failed. Please check your credentials and try again."
       );
     }

@@ -2,6 +2,7 @@
 import Navbar from "@/components/Navbar";
 import useAuth from "@/hooks/useAuth";
 import api from "@/lib/api";
+import { errorToast, infoToast, successToast } from "@/lib/toasts";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaFileUpload } from "react-icons/fa";
@@ -15,7 +16,7 @@ const Create = () => {
   useEffect(() => {
     if (!isLoading && !user) {
       router.push("/login");
-      alert("Please login to create a post");
+      infoToast("Please login to create a post");
       return;
     }
   }, [isLoading, user, router]);
@@ -33,12 +34,22 @@ const Create = () => {
     );
   }
 
-  if (!isLoading && !user) return null;
+  if (!isLoading && !user)
+    return (
+      <div className="bg-[#3E5879] min-h-screen w-full">
+        <Navbar />
+        <div className="home">
+          <h1 className="text-xl! sm:text-2xl! md:text-3xl! lg:text-3xl! xl:text-4xl! font-bold! tracking-wide text-white text-center pt-[15%]!">
+            Loading...
+          </h1>
+        </div>
+      </div>
+    );
 
   const createHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!image) {
-      alert("Please select an image");
+      infoToast("Please select an image");
       return;
     }
     const formData = new FormData();
@@ -48,11 +59,11 @@ const Create = () => {
     try {
       await api.post("/api/posts", formData);
       router.push("/posts");
-      alert("Post created successfully");
+      successToast("Post created successfully");
       setImage(null);
     } catch (err) {
       console.log(err);
-      alert("Error creating post");
+      errorToast("Error creating post");
     }
     setLoading(false);
   };

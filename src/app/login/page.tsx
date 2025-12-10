@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import api from "@/lib/api";
+import { errorToast, successToast } from "@/lib/toasts";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,10 +20,10 @@ const Login = () => {
       router.push("/posts");
       setUsername("");
       setPassword("");
-      alert("Login successful!");
+      successToast("Login successful!");
     } catch (err) {
       console.log(err);
-      alert("Login failed. Please check your credentials and try again.");
+      errorToast("Login failed. Please check your credentials and try again.");
     }
     setLoading(false);
   };

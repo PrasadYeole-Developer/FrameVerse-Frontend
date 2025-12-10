@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import PostCard from "@/components/PostCard";
 import useAuth from "@/hooks/useAuth";
 import api from "@/lib/api";
+import { errorToast, infoToast } from "@/lib/toasts";
 import Post from "@/types/post";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ const Posts = () => {
   useEffect(() => {
     if (!isLoading && !user) {
       router.push("/login");
-      alert("Please login to see the posts");
+      infoToast("Please login to see the posts");
       return;
     }
   }, [isLoading, user, router]);
@@ -26,7 +27,7 @@ const Posts = () => {
           setPosts(res.data.posts);
         } catch (err) {
           console.log(err);
-          alert("Error fetching posts");
+          errorToast("Error fetching posts");
         }
       };
       getPosts();
@@ -46,7 +47,17 @@ const Posts = () => {
     );
   }
 
-  if (!isLoading && !user) return null;
+  if (!isLoading && !user)
+    return (
+      <div className="bg-[#3E5879] min-h-screen w-full">
+        <Navbar />
+        <div className="home">
+          <h1 className="text-xl! sm:text-2xl! md:text-3xl! lg:text-3xl! xl:text-4xl! font-bold! tracking-wide text-white text-center pt-[15%]!">
+            Loading...
+          </h1>
+        </div>
+      </div>
+    );
 
   return (
     <div className="bg-[#3E5879] min-h-screen w-full">
