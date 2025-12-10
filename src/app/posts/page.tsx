@@ -19,17 +19,19 @@ const Posts = () => {
   }, [isLoading, user, router]);
   const [posts, setPosts] = useState<Post[]>([]);
   useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const res = await api.get("/api/posts");
-        setPosts(res.data.posts);
-      } catch (err) {
-        console.log(err);
-        alert("Error fetching posts");
-      }
-    };
-    getPosts();
-  }, []);
+    if (!isLoading && user) {
+      const getPosts = async () => {
+        try {
+          const res = await api.get("/api/posts");
+          setPosts(res.data.posts);
+        } catch (err) {
+          console.log(err);
+          alert("Error fetching posts");
+        }
+      };
+      getPosts();
+    }
+  }, [isLoading, user]);
 
   if (isLoading) {
     return (

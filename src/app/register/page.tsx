@@ -19,6 +19,7 @@ const Register = () => {
       router.push("/login");
       setUsername("");
       setPassword("");
+      console.log(process.env.NEXT_PUBLIC_API_BASE_URL);
       alert("Registration successful! Please login.");
     } catch (err) {
       console.log(err);
