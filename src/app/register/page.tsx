@@ -34,7 +34,7 @@ const Register = () => {
       <Navbar />
       <div className="flex flex-col items-center justify-center mt-12!">
         <form
-          className="flex flex-col gap-4 bg-[#D8C4B6] p-8! rounded-xs shadow-md w-lg"
+          className="flex flex-col gap-4 bg-[#D8C4B6] p-8! rounded-xs shadow-md w-sm sm:w-md md:w-lg"
           onSubmit={registerHandler}
         >
           <input

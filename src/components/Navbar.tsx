@@ -36,8 +36,12 @@ const Navbar = () => {
         className="cursor-pointer menu transition-all duration-500 active:scale-70"
         onClick={handleMenu}
       />
-      {isMenuOpen ? (
-        <div className="flex flex-col bg-[#213555] opacity-80 w-full h-screen gap-4 p-12 transition-all duration-500 absolute top-0 right-0">
+      {isMenuOpen && (
+        <div
+          className={`flex flex-col bg-[#213555] transition-all duration-500 w-full h-screen gap-4 absolute top-0 right-0 ${
+            isMenuOpen ? "opacity-80" : "opacity-0"
+          }`}
+        >
           <ImCross
             size={24}
             className="cursor-pointer transition-all duration-500 active:scale-70 absolute top-10 right-16"
@@ -58,7 +62,7 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-      ) : null}
+      )}
     </header>
   );
 };
