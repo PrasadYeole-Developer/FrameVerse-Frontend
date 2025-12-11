@@ -29,6 +29,7 @@ const Navbar = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
   return (
     <header className="w-full select-none bg-[#213555] flex items-center justify-between py-8! px-16! border-b border-gray-200">
       <h3 className="text-[1.5rem]!">
@@ -47,16 +48,10 @@ const Navbar = () => {
           </button>
         ) : (
           <>
-            <Link
-              href="/register"
-              className={`cursor-pointer ${isLoading ? "hidden" : null}`}
-            >
+            <Link href="/register" className="cursor-pointer">
               Register
             </Link>
-            <Link
-              href="/login"
-              className={`cursor-pointer ${isLoading ? "hidden" : null}`}
-            >
+            <Link href="/login" className="cursor-pointer">
               Login
             </Link>
           </>
