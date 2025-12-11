@@ -1,23 +1,24 @@
 "use client";
-import useAuth from "@/hooks/useAuth";
+import { AuthContext } from "@/context/AuthContext";
 import api from "@/lib/api";
 import { infoToast } from "@/lib/toasts";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ImCross } from "react-icons/im";
 import { TiThMenu } from "react-icons/ti";
 
 const Navbar = () => {
-  const { isLoading, user } = useAuth();
+  const { loading, user } = useContext(AuthContext);
   const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const logoutHandler = async () => {
+    setIsMenuOpen(false);
     await api.post("/auth/logout");
     router.push("/login");
     infoToast("User logged out!");
   };
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuVariants = {
     hidden: { opacity: 0, x: "100%" },
     visible: { opacity: 0.8, x: 0 },
@@ -41,7 +42,7 @@ const Navbar = () => {
         <Link href="/create" className="cursor-pointer">
           Create
         </Link>
-        {!isLoading && user ? (
+        {!loading && user ? (
           <button className="cursor-pointer font-bold!" onClick={logoutHandler}>
             Logout
           </button>
@@ -85,7 +86,7 @@ const Navbar = () => {
               <Link href="/create" className="cursor-pointer text-xl!">
                 Create
               </Link>
-              {!isLoading && user ? (
+              {!loading && user ? (
                 <button
                   className="cursor-pointer font-bold! mt-4! text-xl!"
                   onClick={logoutHandler}
