@@ -1,11 +1,22 @@
 "use client";
-import { AnimatePresence, easeOut, motion } from "framer-motion";
+import useAuth from "@/hooks/useAuth";
+import api from "@/lib/api";
+import { infoToast } from "@/lib/toasts";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { TiThMenu } from "react-icons/ti";
 
 const Navbar = () => {
+  const { isLoading, user } = useAuth();
+  const router = useRouter();
+  const logoutHandler = async () => {
+    await api.post("/auth/logout");
+    router.push("/login");
+    infoToast("User logged out!");
+  };
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuVariants = {
     hidden: { opacity: 0, x: "100%" },
@@ -30,12 +41,20 @@ const Navbar = () => {
         <Link href="/create" className="cursor-pointer">
           Create
         </Link>
-        <Link href="/register" className="cursor-pointer">
-          Register
-        </Link>
-        <Link href="/login" className="cursor-pointer">
-          Login
-        </Link>
+        {!isLoading && user ? (
+          <button className="cursor-pointer font-bold!" onClick={logoutHandler}>
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link href="/register" className="cursor-pointer">
+              Register
+            </Link>
+            <Link href="/login" className="cursor-pointer">
+              Login
+            </Link>
+          </>
+        )}
       </nav>
       <TiThMenu
         size={24}
@@ -49,7 +68,7 @@ const Navbar = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            transition={{ ease: "easeOut" }}
+            transition={{ ease: "easeOut", duration: 0.25 }}
             className={`flex flex-col bg-[#213555] transition-all duration-500 w-full h-screen gap-4 absolute top-0 right-0 ${
               isMenuOpen ? "opacity-80" : "opacity-0"
             }`}
@@ -66,12 +85,23 @@ const Navbar = () => {
               <Link href="/create" className="cursor-pointer text-xl!">
                 Create
               </Link>
-              <Link href="/register" className="cursor-pointer text-xl!">
-                Register
-              </Link>
-              <Link href="/login" className="cursor-pointer text-xl!">
-                Login
-              </Link>
+              {!isLoading && user ? (
+                <button
+                  className="cursor-pointer font-bold!"
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link href="/register" className="cursor-pointer">
+                    Register
+                  </Link>
+                  <Link href="/login" className="cursor-pointer">
+                    Login
+                  </Link>
+                </>
+              )}
             </div>
           </motion.div>
         )}
