@@ -11,11 +11,12 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{
-            opacity: 100,
+            opacity: 1,
             y: 0,
           }}
           transition={{
             duration: 0.7,
+            ease: "easeOut",
           }}
           className="home"
         >
