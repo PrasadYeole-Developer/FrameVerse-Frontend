@@ -87,7 +87,7 @@ const Navbar = () => {
               </Link>
               {!isLoading && user ? (
                 <button
-                  className="cursor-pointer font-bold!"
+                  className="cursor-pointer font-bold! mt-4! text-xl!"
                   onClick={logoutHandler}
                 >
                   Logout

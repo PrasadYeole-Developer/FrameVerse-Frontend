@@ -17,7 +17,7 @@ const Login = () => {
     try {
       const data = { username, password };
       await api.post("/auth/login", data);
-      router.push("/posts");
+      router.push("/create");
       setUsername("");
       setPassword("");
       successToast("Login successful!");
