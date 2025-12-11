@@ -34,7 +34,7 @@ const Navbar = () => {
       <h3 className="text-[1.5rem]!">
         <Link href="/">FrameVerse</Link>
       </h3>
-      <nav className={`flex gap-8 ${isLoading ? "hidden" : null}`}>
+      <nav className="flex gap-8">
         <Link href="/posts" className="cursor-pointer">
           Posts
         </Link>
@@ -47,10 +47,16 @@ const Navbar = () => {
           </button>
         ) : (
           <>
-            <Link href="/register" className="cursor-pointer">
+            <Link
+              href="/register"
+              className={`cursor-pointer ${isLoading ? "hidden" : null}`}
+            >
               Register
             </Link>
-            <Link href="/login" className="cursor-pointer">
+            <Link
+              href="/login"
+              className={`cursor-pointer ${isLoading ? "hidden" : null}`}
+            >
               Login
             </Link>
           </>
