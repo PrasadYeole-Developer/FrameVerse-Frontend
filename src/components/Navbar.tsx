@@ -47,10 +47,10 @@ const Navbar = () => {
           </button>
         ) : (
           <>
-            <Link href="/register" className="cursor-pointer text-[1rem]!">
+            <Link href="/register" className="cursor-pointer">
               Register
             </Link>
-            <Link href="/login" className="cursor-pointer text-[1rem]!">
+            <Link href="/login" className="cursor-pointer">
               Login
             </Link>
           </>
@@ -94,10 +94,10 @@ const Navbar = () => {
                 </button>
               ) : (
                 <>
-                  <Link href="/register" className="cursor-pointer text-[1rem]!">
+                  <Link href="/register" className="cursor-pointer text-xl!">
                     Register
                   </Link>
-                  <Link href="/login" className="cursor-pointer text-[1rem]!">
+                  <Link href="/login" className="cursor-pointer text-xl!">
                     Login
                   </Link>
                 </>
