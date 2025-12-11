@@ -1,24 +1,23 @@
 "use client";
-import { AuthContext } from "@/context/AuthContext";
+import useAuth from "@/hooks/useAuth";
 import api from "@/lib/api";
 import { infoToast } from "@/lib/toasts";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { TiThMenu } from "react-icons/ti";
 
 const Navbar = () => {
-  const { loading, user } = useContext(AuthContext);
+  const { isLoading, user } = useAuth();
   const router = useRouter();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const logoutHandler = async () => {
-    setIsMenuOpen(false);
     await api.post("/auth/logout");
     router.push("/login");
     infoToast("User logged out!");
   };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuVariants = {
     hidden: { opacity: 0, x: "100%" },
     visible: { opacity: 0.8, x: 0 },
@@ -35,14 +34,14 @@ const Navbar = () => {
       <h3 className="text-[1.5rem]!">
         <Link href="/">FrameVerse</Link>
       </h3>
-      <nav className="flex gap-8">
+      <nav className={`flex gap-8 ${isLoading ? "hidden" : null}`}>
         <Link href="/posts" className="cursor-pointer">
           Posts
         </Link>
         <Link href="/create" className="cursor-pointer">
           Create
         </Link>
-        {!loading && user ? (
+        {!isLoading && user ? (
           <button className="cursor-pointer font-bold!" onClick={logoutHandler}>
             Logout
           </button>
@@ -86,7 +85,7 @@ const Navbar = () => {
               <Link href="/create" className="cursor-pointer text-xl!">
                 Create
               </Link>
-              {!loading && user ? (
+              {!isLoading && user ? (
                 <button
                   className="cursor-pointer font-bold! mt-4! text-xl!"
                   onClick={logoutHandler}
