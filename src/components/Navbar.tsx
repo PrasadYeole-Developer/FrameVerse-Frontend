@@ -48,9 +48,6 @@ const Navbar = () => {
           </button>
         ) : (
           <>
-            <Link href="/register" className="cursor-pointer">
-              Register
-            </Link>
             <Link href="/login" className="cursor-pointer">
               Login
             </Link>
